@@ -41,24 +41,42 @@ d3.csv("data/multiTimeline.csv", function (error, data) {
 
   //Add annotations
   var labels = [{
-    data: { date: "2013-03-03", freq: 80 },
+    data: { date: "2012-12-16", freq: 75, label: "Sandy Hook shooting" },
+    dy: 275,
+    dx: 0
+  },
+  {
+    data: { date: "2013-01-13", freq: 100, label: "Obama announces gun control plan" },
     dy: 37,
+    dx: 40
+  },
+  {
+    data: { date: "2013-04-14", freq: 61, label: "Assault Weapons Ban bill defeated in Senate" },
+    dy: 37,
+    dx: 40
+  },
+ 
+  {
+    data: { date: "2015-10-01", freq: 30, label: " Umpqua Community College shooting" },
+    dy: -100,
     dx: -142
   },
   {
-    data: { date: "2013-03-03", freq: 80 },
-    dy: 37,
+    data: { date: "2015-12-02", freq: 26, label: "San Bernadino attack" },
+    dy: 0,
     dx: -142
   },
   {
-    data: { date: "2015-12-02", freq: 80 },
-    dy: 37,
-    dx: -142
+    data: { date: "2016-1-03", freq: 62, label: "Obama unveils new gun control proposal" },
+    dy: -100,
+    dx: 0,
+    note: { align: "middle"}
   },
   {
     data: { date: "2015-06-17", freq: 8, label: "Charleston church shooting" },
-    dy: -300,
-    dx: -10
+    dy: -275,
+    dx: 0,
+    note: { align: "middle"}
   }, {
     data: { date: "2016-06-12", freq: 43, label: "Orlando Nightclub Shooting" },
     dy: -80,
