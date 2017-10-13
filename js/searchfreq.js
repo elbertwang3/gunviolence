@@ -85,7 +85,7 @@ d3.csv("data/multiTimeline.csv", function (error, data) {
   }, {
     data: { date: "2016-06-12", freq: 43, label: "Orlando Nightclub Shooting" },
     dy: -80,
-    dx: 60,
+    dx: 0,
     note: { align: "middle" }
   }, {
     data: { date: "2017-10-01", freq: 39,label: "Las Vegas Shooting" },
