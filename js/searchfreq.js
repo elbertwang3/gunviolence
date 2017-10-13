@@ -78,6 +78,11 @@ d3.csv("data/multiTimeline.csv", function (error, data) {
     dx: 0,
     note: { align: "middle"}
   }, {
+    data: { date: "2017-02-28", freq: 4, label: "Trump repeals Obama-era gun control policy" },
+    dy: -325,
+    dx: 0,
+    note: { align: "middle"}
+  }, {
     data: { date: "2016-06-12", freq: 43, label: "Orlando Nightclub Shooting" },
     dy: -80,
     dx: 60,
@@ -85,10 +90,10 @@ d3.csv("data/multiTimeline.csv", function (error, data) {
   }, {
     data: { date: "2017-10-01", freq: 39,label: "Las Vegas Shooting" },
     dy: 0,
-    dx: -40
+    dx: -20
   }].map(function (l) {
     l.note = Object.assign({}, l.note, { title: l.data.label,
-      label: "" + l.data.date });
+      label: ""});
     l.subject = { radius: 4 };
 
     return l;
