@@ -32,20 +32,41 @@
 
 			<div class="content">
 				<div class="article">
-					<p>In the wake of the Las Vegas shooting, the deadliest mass shooting in the U.S. to date, the gun control debate has sparked again. <a href="https://fivethirtyeight.com/features/the-u-s-has-never-been-so-polarized-on-guns/">America has never been more divided on guns</a>. Yet our collective interest in gun control only lasts for a couple weeks after an incident like the Las Vegas shooting, and just as the memory of those who passed fades, so too does our anger subside about how easy it is to obtain guns in America--long before any meaningful bipartisan legislation can be passed into law. We'd rather choose to forget and move on than face the uncomfortable reality of why we continue to die to guns in America.  </p>
+					<p>In the wake of the Las Vegas shooting, the deadliest mass shooting in the U.S. to date, the gun control debate has sparked again. <a href="https://fivethirtyeight.com/features/the-u-s-has-never-been-so-polarized-on-guns/">America has never been more divided on guns</a>. Yet our collective interest in gun control only lasts for a couple weeks after an incident like this one, and just as the memory of those who passed fades, so too does our anger subside about how easy it is to obtain guns in America--long before any meaningful bipartisan legislation can be passed into law. We'd rather choose to forget and move on than face the uncomfortable reality of why we continue to die to guns in America.  </p>
 					<div class="graph" id="searchfreq">
 						<h3> Interest in "gun control" from Sandy Hook to Vegas, Google Trends </h3>
 					</div>
-					<p> After the Sandy Hook shooting, in which 20 children and 6 staff members were shot at their elementary school, interest in gun control spiked. The incident, which brought then President Obama to tears, led to executive actions from Obama and twow pieces of legislation. Senator Dianne Feinstein (D-CA) sponsored the Assault Weapons Ban of 2013, which would've banned the import, sale, and possession of semiautomatic assault weapons and large capacity ammunition feeding devices, and Senators Joe Manchin and Pat Toomey sponsored the bi-partisan Manchin-Toomey Amendment, which would've required background checks on most private gun sales. Both failed. The Assault Weapons Ban would've banned weapons like those used in the Orlando Massacre and the Las Vegas shooting. Yes, the shootings may have still happened. Yes, the shooters may still have gotten their hands on these guns. But banning these types of weapons would either help deter would-be killers or at least make it more difficult for them to obtain these weapons. </p>
+					<p> After the Sandy Hook shooting, in which 20 children and 6 staff members were shot at their elementary school, interest in gun control spiked. The incident, which brought then President Barack Obama to tears, led to executive actions from Obama and twow pieces of legislation. Senator Dianne Feinstein (D-CA) sponsored the Assault Weapons Ban of 2013, which would've banned the import, sale, and possession of semiautomatic assault weapons and large capacity ammunition feeding devices, and Senators Joe Manchin and Pat Toomey sponsored the bi-partisan Manchin-Toomey Amendment, which would've required background checks on most private gun sales. Both failed. The Assault Weapons Ban would've banned weapons like those used in the Orlando Massacre and the Las Vegas shooting. Yes, the shootings may have still happened. Yes, the shooters may still have gotten their hands on these guns. But banning these types of weapons would either help deter would-be killers or at least make it more difficult for them to obtain these weapons. </p>
 
-					<p> In late February, Trump repealed the Obama-era rule that would've barred certain mentally ill people from buying guns to little fanfare. But if gun control advocates argue that it's not guns that kill people but the people behind the guns, then how do we stop those people? Despite <a href="http://www.pewresearch.org/fact-tank/2017/06/23/bipartisan-support-for-some-gun-proposals-stark-partisan-divisions-on-many-others/">bipartisan agreement</a> in preventing the mentally ill from purchasing guns and enforcing background checks for private gun sales, Republican lawmakers have voted against any type of gun control despite their support for certain gun control measures.
+					<p> In late February, Trump repealed the Obama-era rule that would've barred certain mentally ill people from buying guns to little fanfare. But if gun control advocates argue that it's not guns that kill people but the people behind the guns, then how do we stop those people? Despite <a href="http://www.pewresearch.org/fact-tank/2017/06/23/bipartisan-support-for-some-gun-proposals-stark-partisan-divisions-on-many-others/">bipartisan agreement</a> in preventing the mentally ill from purchasing guns and enforcing background checks for private gun sales, Republican lawmakers have voted against any type of gun control despite Republican support for certain gun control measures.</p>
 
+					
+					<div id="massshootingmap"></div>
+					<div id="congressionalvotemap"></div>
+
+					<p> but mass shootings are a bad way to understand gunviolence
+					https://fivethirtyeight.com/features/mass-shootings-are-a-bad-way-to-understand-gun-violence/</p>
 
 					<div id="worldchart">
 						<h3> World firearms and homicides data, UNODC </h3>
+						<p>	The U.S. certainly seems to have a <i>problem</i>, but it's hard to pin down exactly what it is. Do we have too many guns? Are we allowing guns to get into the hands of the wrong people? Should we ban only certain types of guns? Is it necessarily a <i>gun</i> problem?</p>
 						<table id="table">
 						
 						</table>
+						<p> Looking at the chart, it's no surprise the U.S. has the most total firearms and firearms per capita. </p>
+
+						<p> OK, after looking at the table, the U.S. does have the most guns in the world, but when adjusted per capita, it does not have that much more than other developed countries in Scandinavia, etc. So what's the difference? Why do they have so much fewer homicides?
+							Iceland = no class stratification, most people are middle class
+							acquiring a gun = medical examination and written test
+							no hard drugs
+							problem might not be guns themselves 
+							2/3 of gun deaths are suicides, out of 36,000 gun deaths
+							1/3 homicides, most of whom are young black men
+							remaining are accidents</p>
+						<p> Norway attacks
+						https://en.wikipedia.org/wiki/2011_Norway_attacks
+						https://en.wikipedia.org/wiki/Gun_laws_in_Norway
+					https://www.theguardian.com/world/2011/jul/24/norway-strict-gun-laws-circumvented</p>
 
 					</div>
 					<p>  http://www.bbc.com/news/magazine-22288564 </p>
@@ -67,6 +88,7 @@
 		<script src="js/d3-legend.js"></script>
 		<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
     	<script src="js/searchfreq.js"></script>
+    	<script src="js/massshootingmap.js"></script>
     	<script src="js/chartjs.js"></script>
     	<script src="js/chartjs2.js"></script>
     	<script src="js/chartjs3.js"></script>

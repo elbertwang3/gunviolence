@@ -121,6 +121,5 @@ d3.csv("data/multiTimeline.csv", function (error, data) {
   });*/
 
   svg.append("g").attr("class", "annotation-test").call(makeAnnotations);
-  console.log("getting here??");
   svg.selectAll("g.annotation-connector, g.annotation-note").classed("hidden", false);
 });
