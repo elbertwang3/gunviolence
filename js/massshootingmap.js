@@ -7,8 +7,8 @@ var massshootingsvg = d3.select("#massshootingmap").append("svg")
 
 	
 var projection = d3.geoAlbersUsa()
-    .scale(1200)
-    .translate([,swidth / 2, msheight / 2]);
+    .scale(1280)
+    .translate([mswidth / 2, msheight / 2]);
 
 var path = d3.geoPath()
     .projection(projection);
@@ -52,7 +52,7 @@ function ready(error, us, statenames, congress, shootings) {
 		nestedshootingsobj[nestedshootings[i]['key']] = nestedshootings[i]['value']
 	}
 	console.log(nestedshootingsobj);
-	massshootingsvg.append("defs").append("path")
+	/*massshootingsvg.append("defs").append("path")
       .attr("id", "land")
       .datum(topojson.feature(us, us.objects.land))
       .attr("d", path);
@@ -60,13 +60,13 @@ function ready(error, us, statenames, congress, shootings) {
   	massshootingsvg.append("clipPath")
       .attr("id", "clip-land")
     .append("use")
-      .attr("xlink:href", "#land");
+      .attr("xlink:href", "#land");*/
 
 	massshootingsvg.append("g")
       .attr("class", "districts")
       .attr("clip-path", "url(#clip-land)")
     .selectAll("path")
-      .data(topojson.feature(congress, congress.objects.districts).features)
+      .data(topojson.feature(congress, congress.objects.district).features)
     .enter().append("path")
       .attr("d", path)
       .attr("fill", function(d) { 
@@ -83,7 +83,13 @@ function ready(error, us, statenames, congress, shootings) {
 
     massshootingsvg.append("path")
       .attr("class", "district-boundaries")
-      .datum(topojson.mesh(congress, congress.objects.districts, function(a, b) { return a !== b && (a.id / 1000 | 0) === (b.id / 1000 | 0); }))
+      .datum(topojson.mesh(congress, congress.objects.district, function(a, b) { return a !== b && (a.id / 1000 | 0) === (b.id / 1000 | 0); }))
+      .attr("d", path);
+
+
+    massshootingsvg.append("path")
+      .attr("class", "state-boundaries")
+      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("d", path);
 
    
