@@ -5,9 +5,20 @@ var massshootingsvg = d3.select("#massshootingmap").append("svg")
     	.attr("width", mswidth)
     	.attr("height", msheight);
 
+	
+var projection = d3.geoAlbersUsa()
+    .scale(1200)
+    .translate([,swidth / 2, msheight / 2]);
+
+var path = d3.geoPath()
+    .projection(projection);
+
+var names = {};
 d3.queue()
     .defer(d3.json, "data/us.json")
-    .defer(d3.tsv, "data/us-state-names.tsv")
+    .defer(d3.tsv, "data/us-state-names.tsv", function(d, i) {   
+      names[d.name] = d.id;
+    })
     .defer(d3.json, "data/us-congress-115.json")
     .defer(d3.csv, "data/2017massshootings.csv")
     .await(ready);
@@ -16,25 +27,31 @@ function ready(error, us, statenames, congress, shootings) {
 
 
 	if (error) throw error;
-	console.log(us);
-	console.log(congress);
-	console.log(shootings);
 
-	shootings.forEach(function(d) {
-		d['district'] = +d['district'];
-		d['stateid'] = 
+	var shootingswstateid = shootings.map(function(d) {
+
+		d['district'] = add0ifneeded(d['district'])
+		d['stateid'] = add0ifneeded(names[d['State']]);
+		d['GEOID'] = d['stateid'] + d['district']
+		return d;
 	});
-	console.log(shootings);
 
+	var nestedshootings = d3.nest()
+							.key(function(d) { return d.GEOID;})
+							.rollup(function(v) { return v.length;})
+							.entries(shootingswstateid)
+	console.log(nestedshootings);
 
-	
-	var projection = d3.geoAlbersUsa()
-	    .scale(1200)
-	    .translate([width / 2, height / 2]);
+	console.log(d3.max(nestedshootings, function(d) { return d.value;}));
+	var colorScale = d3.scaleLinear()
+						.domain([0, 14])
+						.range(["white", "#08306b"]);
 
-	var path = d3.geoPath()
-	    .projection(projection);
-
+	nestedshootingsobj = {};
+	for (var i = 0; i < nestedshootings.length; i++) {
+		nestedshootingsobj[nestedshootings[i]['key']] = nestedshootings[i]['value']
+	}
+	console.log(nestedshootingsobj);
 	massshootingsvg.append("defs").append("path")
       .attr("id", "land")
       .datum(topojson.feature(us, us.objects.land))
@@ -52,6 +69,15 @@ function ready(error, us, statenames, congress, shootings) {
       .data(topojson.feature(congress, congress.objects.districts).features)
     .enter().append("path")
       .attr("d", path)
+      .attr("fill", function(d) { 
+      
+        //console.log(names[+d.id]);
+        //console.log(unemployment.get(names[+d.id]));	
+        //console.log(color(unemployment.get(names[+d.id])));
+        //console.log(colorScale(nestedshootings[d.properties.GEOID]));
+        console.log(nestedshootingsobj[d.properties.GEOID]);
+        return colorScale(nestedshootingsobj[d.properties.GEOID]);
+      })
     .append("title")
       .text(function(d) { return d.id; });
 
@@ -61,5 +87,8 @@ function ready(error, us, statenames, congress, shootings) {
       .attr("d", path);
 
    
+}
+function add0ifneeded(id) {
+	return ('0' + id).slice(-2)
 }
 	
