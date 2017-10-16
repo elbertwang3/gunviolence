@@ -7,8 +7,8 @@ var votesvg = d3.select("#votemap").append("svg")
 
 	
 var projection = d3.geoAlbersUsa()
-    .scale(1280)
-    .translate([votewidth / 2, (voteheight / 2)-100]);
+    .scale(1150)
+    .translate([votewidth / 2, (voteheight / 2)-75]);
 
 var path = d3.geoPath()
     .projection(projection);
