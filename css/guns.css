@@ -159,3 +159,9 @@ path {
     border-radius: 8px;			
     pointer-events: none;		
 }
+
+.states {
+  fill: none;
+  stroke: grey;
+  /*stroke-linejoin: round;*/
+}

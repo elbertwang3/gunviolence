@@ -91,10 +91,16 @@ function ready(error, us, statenames, congress, votes) {
         //console.log(colorScale(nestedshootings[d.properties.GEOID]));
         //console.log(nestedshootingsobj[d.properties.GEOID]);
         if (votesobj[d.properties.GEOID] != null) {
+
           var vote = votesobj[d.properties.GEOID]['vote']
-          var party = votesobj[d.properties.GEOID]['party']
+          if (vote == "Not Voting") {
+            return "lightgrey";
+          } else {
+            var party = votesobj[d.properties.GEOID]['party'];
+            return voteScale(vote + " " + party);
+          }
           //console.log(vote + " " + party);
-          return voteScale(vote + " " + party);
+          
         } else {
           return "lightgrey";
         }
