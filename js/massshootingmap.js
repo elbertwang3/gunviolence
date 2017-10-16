@@ -40,9 +40,9 @@ function ready(error, us, statenames, congress, shootings) {
 							.key(function(d) { return d.GEOID;})
 							.rollup(function(v) { return v.length;})
 							.entries(shootingswstateid)
-	console.log(nestedshootings);
+	//console.log(nestedshootings);
 
-	console.log(d3.max(nestedshootings, function(d) { return d.value;}));
+
 	var colorScale = d3.scaleLinear()
 						.domain([0, 14])
 						.range(["white", "#08306b"]);
@@ -75,7 +75,7 @@ function ready(error, us, statenames, congress, shootings) {
         //console.log(unemployment.get(names[+d.id]));	
         //console.log(color(unemployment.get(names[+d.id])));
         //console.log(colorScale(nestedshootings[d.properties.GEOID]));
-        console.log(nestedshootingsobj[d.properties.GEOID]);
+        //console.log(nestedshootingsobj[d.properties.GEOID]);
         return colorScale(nestedshootingsobj[d.properties.GEOID]);
       })
     .append("title")
