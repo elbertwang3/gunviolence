@@ -44,6 +44,7 @@ function ready(error, us, statenames, shootings, populations) {
 		return d;
 	});
 
+	console.log(shootingswstateid);
 	var nestedshootings = d3.nest()
 							.key(function(d) { return d.State;})
 							.rollup(function(v) { return v.length;})
@@ -92,7 +93,7 @@ function ready(error, us, statenames, shootings, populations) {
 		.attr("r", 5)
 		.attr("fill", "red")
 		 .attr("transform", function(d) {
-		 	console.log(d.lng)
+		 	console.log(d.lng);
 		 	console.log(d.lat);
 	    return "translate(" + projection([
 	      d.lng,
