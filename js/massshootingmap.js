@@ -63,10 +63,15 @@ function ready(error, us, statenames, shootings, populations) {
 
 
 
-	
+	console.log(shootings);
 	var colorScale = d3.scaleQuantile()
 						.domain(Object.values(nestedshootingsobj))
 						.range(d3.schemeBlues[9]);
+
+	console.log(d3.extent(shootings, function(d) { return +d.killed}))
+	var circleScale = d3.scaleLinear()
+						.domain(d3.extent(shootings, function(d) { return +d.killed}))
+						.range([4, 15])
 
 	state = massshootingsvg.append("g")
     .attr("class", "states")
@@ -90,11 +95,10 @@ function ready(error, us, statenames, shootings, populations) {
 		.data(shootings).enter()
 		.append("circle")
 	
-		.attr("r", 5)
+		.attr("r", function (d) { console.log(circleScale(+d.killed)); return circleScale(+d.killed); })
 		.attr("fill", "red")
 		 .attr("transform", function(d) {
-		 	console.log(d.lng);
-		 	console.log(d.lat);
+		 
 	    return "translate(" + projection([
 	      d.lng,
 	      d.lat
