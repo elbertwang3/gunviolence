@@ -1,4 +1,4 @@
-"Incident Date",State,"City Or County",Address,"killed","injured",Operations,"district"
+"Incident Date",State,"City",Address,"killed","injured",Operations,"district"
 "October 7, 2017",Arizona,Phoenix,"87th Ave and Thomas Rd",0,4,N/A,3
 "October 6, 2017",Illinois,Chicago,"8000 block of S Marshfield",0,5,N/A,1
 "October 5, 2017",Arizona,"Casa Grande","400 block of W 13th Street",4,0,N/A,1

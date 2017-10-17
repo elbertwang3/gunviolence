@@ -21,9 +21,10 @@ d3.queue()
     })
   
    // .defer(d3.json, "data/us-congress-115.json")
-    .defer(d3.csv, "data/2017massshootings.csv")
+    .defer(d3.csv, "data/2017massshootings2.csv")
     .defer(d3.csv, "data/census-state-populations.csv")
     .await(ready);
+
 
 function ready(error, us, statenames, shootings, populations) {
 
@@ -58,12 +59,14 @@ function ready(error, us, statenames, shootings, populations) {
 	}
 	console.log(nestedshootingsobj);
 
+
+
+
+	
 	var colorScale = d3.scaleQuantile()
 						.domain(Object.values(nestedshootingsobj))
 						.range(d3.schemeBlues[9]);
 
-	console.log(us)
-	console.log(us.objects.states);
 	state = massshootingsvg.append("g")
     .attr("class", "states")
     .selectAll("path")
@@ -71,7 +74,7 @@ function ready(error, us, statenames, shootings, populations) {
     .enter().append("path")
     .attr("d", path)
    	.attr("fill", function(d) { 
-    	console.log(nestedshootingsobj[names[d.id]]);
+    	//console.log(nestedshootingsobj[names[d.id]]);
     	var shootingspermil = nestedshootingsobj[names[d.id]]
     	if (shootingspermil == null) {
     		return "white";
@@ -80,6 +83,22 @@ function ready(error, us, statenames, shootings, populations) {
     	}
     	//colorScale(nestedshootingsobj(d.properties.State))
     });
+
+
+    massshootingsvg.selectAll("circle")
+		.data(shootings).enter()
+		.append("circle")
+	
+		.attr("r", 5)
+		.attr("fill", "red")
+		 .attr("transform", function(d) {
+		 	console.log(d.lng)
+		 	console.log(d.lat);
+	    return "translate(" + projection([
+	      d.lng,
+	      d.lat
+	    ]) + ")";
+	  });
 	/*massshootingsvg.append("defs").append("path")
       .attr("id", "land")
       .datum(topojson.feature(us, us.objects.land))
@@ -120,9 +139,10 @@ function ready(error, us, statenames, shootings, populations) {
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("d", path);*/
 
-   
+ 
+
 }
 function add0ifneeded(id) {
 	return ('0' + id).slice(-2)
 }
-	
+
