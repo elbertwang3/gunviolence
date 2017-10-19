@@ -5,6 +5,10 @@ var massshootingsvg = d3.select("#massshootingmap").append("svg")
     	.attr("width", mswidth)
     	.attr("height", msheight);
 
+massshootingsvg.append("text")
+      .attr("class", "source")
+      .attr("transform", "translate(" + (mswidth - 400) + ", " + (msheight - 25) + ")")
+      .text("source: http://www.gunviolencearchive.org/reports/mass-shooting")
 	
 var projection = d3.geoAlbersUsa()
     .scale(1280)
