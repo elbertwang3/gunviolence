@@ -18,6 +18,10 @@ var valueline = d3.line().x(function (d) {
 
 var svg = d3.select("#searchfreq").append("svg").attr("width", 960).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+svg.append("text")
+      .attr("class", "source")
+      .attr("transform", "translate(" + (width - 110) + ", " + (height + 27) + ")")
+      .text("source: Google Trends")
 d3.csv("data/multiTimeline.csv", function (error, data) {
   if (error) throw error;
 

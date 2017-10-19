@@ -37,7 +37,7 @@ function ready(error, us, statenames, shootings, populations) {
 	for (var i = 0; i < populations.length; i++) {
 		populationsobj[populations[i]['state']] = 1000000/populations[i]['pop_est_2014'];
 	}
-	console.log(populationsobj);
+	//console.log(populationsobj);
 	var shootingswstateid = shootings.map(function(d) {
 
 		d['district'] = add0ifneeded(d['district'])
@@ -46,12 +46,12 @@ function ready(error, us, statenames, shootings, populations) {
 		return d;
 	});
 
-	console.log(shootingswstateid);
+	//console.log(shootingswstateid);
 	var nestedshootings = d3.nest()
 							.key(function(d) { return d.State;})
 							.rollup(function(v) { return v.length;})
 							.entries(shootingswstateid)
-	console.log(nestedshootings);
+	//console.log(nestedshootings);
 	
 
 	
@@ -60,12 +60,8 @@ function ready(error, us, statenames, shootings, populations) {
 	for (var i = 0; i < nestedshootings.length; i++) {
 		nestedshootingsobj[nestedshootings[i]['key']] = nestedshootings[i]['value'] * populationsobj[nestedshootings[i]['key']]
 	}
-	console.log(nestedshootingsobj);
+	//console.log(nestedshootingsobj);
 
-
-
-
-	console.log(shootings);
 	var colorScale = d3.scaleQuantile()
 						.domain(Object.values(nestedshootingsobj))
 						.range(d3.schemeBlues[9]);
@@ -83,7 +79,6 @@ function ready(error, us, statenames, shootings, populations) {
     d3.select(".mslegend")
   .call(mslegend);
 
-	console.log(d3.extent(shootings, function(d) { return +d.killed}))
 	var circleScale = d3.scaleLinear()
 						.domain(d3.extent(shootings, function(d) { return +d.killed}))
 						.range([4, 15])
@@ -110,7 +105,7 @@ function ready(error, us, statenames, shootings, populations) {
 		.data(shootings).enter()
 		.append("circle")
 	
-		.attr("r", function (d) { console.log(circleScale(+d.killed)); return circleScale(+d.killed); })
+		.attr("r", function (d) { return circleScale(+d.killed); })
 		.attr("fill", "red")
 		 .attr("transform", function(d) {
 		 

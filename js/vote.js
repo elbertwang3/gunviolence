@@ -20,6 +20,11 @@ votesvg.append("g")
   .attr("class", "legendOrdinal")
   .attr("transform", "translate(" + votewidth/4 + ", " + (6*voteheight/7) + ")");
 
+votesvg.append("text")
+      .attr("class", "source")
+      .attr("transform", "translate(" + (votewidth - 400) + ", " + (voteheight - 50) + ")")
+      .text("source: https://www.govtrack.us/congress/votes/115-2017/h77")
+
 var codes = {};
 d3.queue()
     .defer(d3.json, "data/us.json")
@@ -50,7 +55,7 @@ function ready(error, us, statenames, congress, votes) {
 
 	var voteScale = d3.scaleOrdinal()
 						.domain(["Aye Republican", "Aye Democrat", "No Republican", "No Democrat"])
-						.range(["#E64045", "lightblue", "#FFD9D9","#2657A1"]);
+						.range(["#CA3433", "lightblue", "#FFD9D9","#2657A1"]);
 
   var legendOrdinal = d3.legendColor()
   //d3 symbol creates a path-string, for example
