@@ -5,6 +5,8 @@ var massshootingsvg = d3.select("#massshootingmap").append("svg")
     	.attr("width", mswidth)
     	.attr("height", msheight);
 
+var mstip = d3.select("#massshootingmap").append("div")  
+        .attr("class", "tooltip");
 massshootingsvg.append("text")
       .attr("class", "source")
       .attr("transform", "translate(" + (mswidth - 400) + ", " + (msheight - 25) + ")")
@@ -111,13 +113,29 @@ function ready(error, us, statenames, shootings, populations) {
 	
 		.attr("r", function (d) { return circleScale(+d.killed); })
 		.attr("fill", "red")
+		.attr("opacity", 0.5)
 		 .attr("transform", function(d) {
 		 
 	    return "translate(" + projection([
 	      d.lng,
 	      d.lat
 	    ]) + ")";
-	  });
+	  	})
+		.on("mouseover", function(d) {
+	     
+	            console.log(d);
+	            mstip.html(d.City + ", " + d.State + ": " + d.killed + " killed, " + d.injured + " injured")
+	             .style("left", (d3.event.pageX) + "px")    
+	                   .style("top", (d3.event.pageY - 28) + "px");
+	            mstip.transition()   
+	                .duration(200)     
+	                 .style("opacity", "1")
+	        })
+	        .on("mouseout", function(d) {   
+	            mstip.transition()    
+	            .duration(200)    
+	            .style("opacity", "0"); 
+	        });
 }
 function add0ifneeded(id) {
 	return ('0' + id).slice(-2)
