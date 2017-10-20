@@ -33,12 +33,16 @@ var redbluepicker = d3.scaleOrdinal()
 d3.csv('data/ownershipdeathrate.csv', function(d) {
     console.log(d);
     //var data = create_data(1000);
-
+   
     d.forEach(function(d) {
         d.Ownership = +d.Ownership;
         d['Death rate'] = +d['Death rate'];
+        d['underpoverty'] = +d['underpoverty']
     });
     console.log(d);
+     var povertyScale = d3.scaleLinear()
+                            .domain(d3.extent(d, function(d) { return d['underpoverty']}))
+                            .range([3,20])
     d = findyhat(d)
     console.log(d)
     var ugline = d3.line()
@@ -110,7 +114,10 @@ d3.csv('data/ownershipdeathrate.csv', function(d) {
         .data(d)
         .enter().append("circle")
         .attr("class", "dot")
-        .attr("r", 10)
+        .attr("opacity", 0.7)
+        .attr("r", function(d) {
+            return povertyScale(d['underpoverty'])
+        })
         .attr("cx", function(d) {
             return ugx(d['Ownership']);
         })
@@ -180,7 +187,8 @@ d3.csv('data/ownershipdeathrate.csv', function(d) {
                 "Ownership": d[i]['Ownership'],
                 "Death rate": d[i]['Death rate'],
                 "election": d[i]['election'],
-                "State": d[i]['State']
+                "State": d[i]['State'],
+                "underpoverty":d[i]['underpoverty']
             })
         }
         return (data);
