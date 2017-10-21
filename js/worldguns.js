@@ -19,7 +19,7 @@ var wgxAxis = d3.axisBottom(wgx)
 var wgyAxis = d3.axisLeft(wgy)
 
 
-var wgsvg = d3.select("#usgunsscatter").append("svg")
+var wgsvg = d3.select("#worldgunsscatter").append("svg")
     .attr("width", wgwidth + wgmargin.left + wgmargin.right)
     .attr("height", wgheight + wgmargin.top + wgmargin.bottom)
     .append("g")

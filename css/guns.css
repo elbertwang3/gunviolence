@@ -169,7 +169,15 @@ path {
 .source {
 	opacity: 0.7;
 	font-size: 12px;
-	font-family: 'Sans Serif';
+	font-family: 'Avenir Next';
 }
 .swatch{
+}
+
+.legendSize circle {
+	opacity: 0.5;
+}
+
+svg text {
+	font-family: 'Avenir Next';	
 }

@@ -19,6 +19,8 @@ var ugxAxis = d3.axisBottom(ugx)
 var ugyAxis = d3.axisLeft(ugy)
 
 
+
+
 var ugsvg = d3.select("#usgunsscatter").append("svg")
     .attr("width", ugwidth + ugmargin.left + ugmargin.right)
     .attr("height", ugheight + ugmargin.top + ugmargin.bottom)
@@ -27,9 +29,22 @@ var ugsvg = d3.select("#usgunsscatter").append("svg")
 var ugtip = d3.select("#usgunsscatter").append("div")  
         .attr("class", "tooltip");
 
+ugsvg.append("g")
+  .attr("class", "legendSize")
+  .attr("transform", "translate(" + 0.8*ugwidth/4 + ", 0)");
+
+ugsvg.append("g")
+  .attr("class", "electionlegend")
+  .attr("transform", "translate(" + 0.2*ugwidth/4 + ", 23)");
+
+
+
 var redbluepicker = d3.scaleOrdinal()
-                    .domain(["blue", "red"])
+                    .domain(["voted Clinton", "voted Trump"])
                     .range(['#08519B', '#B80F0A'])
+
+
+
 d3.csv('data/ownershipdeathrate.csv', function(d) {
     console.log(d);
     //var data = create_data(1000);
@@ -43,6 +58,29 @@ d3.csv('data/ownershipdeathrate.csv', function(d) {
      var povertyScale = d3.scaleLinear()
                             .domain(d3.extent(d, function(d) { return d['underpoverty']}))
                             .range([3,20])
+
+    var legendSize = d3.legendSize()
+        .labelFormat(d3.format(".2f"))
+        .scale(povertyScale)
+        .title("% of pop under the poverty line")
+
+        .shape('circle')
+        .shapePadding(15)
+        .labelOffset(15)
+        .orient('vertical');
+
+    var legendElection = d3.legendColor()
+        .shape('circle')
+         .shapePadding(10)
+        .scale(redbluepicker)
+        .orient('vertical');
+
+    ugsvg.select(".legendSize")
+      .call(legendSize);
+
+    ugsvg.select(".electionlegend")
+      .call(legendElection);
+    
     d = findyhat(d)
     console.log(d)
     var ugline = d3.line()
