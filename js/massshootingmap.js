@@ -31,13 +31,15 @@ d3.queue()
    // .defer(d3.json, "data/us-congress-115.json")
     .defer(d3.csv, "data/2017massshootings2.csv")
     .defer(d3.csv, "data/census-state-populations.csv")
+    .defer(d3.csv, "data/cities2add.csv")
     .await(ready);
 
 
-function ready(error, us, statenames, shootings, populations) {
+function ready(error, us, statenames, shootings, populations, cities) {
 
 
 	if (error) throw error;
+	console.log(cities);
 	populations.map(function(d) { d['pop_est_2014'] = +d['pop_est_2014']; return +d; })
 	populationsobj = {};
 	for (var i = 0; i < populations.length; i++) {
@@ -107,14 +109,15 @@ function ready(error, us, statenames, shootings, populations) {
     });
 
 
-    massshootingsvg.selectAll("circle")
+    massshootingsvg.append("g")
+    .attr("class", "shootings").selectAll("circle")
 		.data(shootings).enter()
 		.append("circle")
 	
 		.attr("r", function (d) { return circleScale(+d.killed); })
 		.attr("fill", "red")
 		.attr("opacity", 0.5)
-		 .attr("transform", function(d) {
+		.attr("transform", function(d) {
 		 
 	    return "translate(" + projection([
 	      d.lng,
@@ -136,6 +139,28 @@ function ready(error, us, statenames, shootings, populations) {
 	            .duration(200)    
 	            .style("opacity", "0"); 
 	        });
+
+	var citiesg = massshootingsvg.append("g")
+		.attr("class", "cities")
+		.selectAll("g")
+		.data(cities).enter()
+		.append("g")
+		.attr("class", "city")
+		.attr("transform", function(d) {
+		 
+	    return "translate(" + projection([
+	      d.lng,
+	      d.lat
+	    ]) + ")";
+	  	})
+	d3.selectAll(".city")
+		.append("circle")
+		.attr("r", 1)
+		.attr("fill", "black")
+	d3.selectAll(".city")
+		.append("text")
+		.text(function(d) { return d.cities})
+
 }
 function add0ifneeded(id) {
 	return ('0' + id).slice(-2)
