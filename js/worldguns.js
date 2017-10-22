@@ -99,7 +99,7 @@ d3.csv('data/gunsdeathrate.csv', function(d) {
         .data(d)
         .enter().append("circle")
         .attr("class", "dot")
-        .attr("r", 10)
+        .attr("r", 3)
         .attr("cx", function(d) {
             return wgx(d['gunsper100']);
         })

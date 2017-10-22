@@ -46,7 +46,6 @@ var redbluepicker = d3.scaleOrdinal()
 
 
 d3.csv('data/ownershipdeathrate.csv', function(d) {
-    console.log(d);
     //var data = create_data(1000);
    
     d.forEach(function(d) {
@@ -54,7 +53,6 @@ d3.csv('data/ownershipdeathrate.csv', function(d) {
         d['Death rate'] = +d['Death rate'];
         d['underpoverty'] = +d['underpoverty']
     });
-    console.log(d);
      var povertyScale = d3.scaleLinear()
                             .domain(d3.extent(d, function(d) { return d['underpoverty']}))
                             .range([3,20])
@@ -82,7 +80,6 @@ d3.csv('data/ownershipdeathrate.csv', function(d) {
       .call(legendElection);
     
     d = findyhat(d)
-    console.log(d)
     var ugline = d3.line()
         .x(function(d) {
             return ugx(d['Ownership']);
@@ -97,16 +94,11 @@ d3.csv('data/ownershipdeathrate.csv', function(d) {
         .y(function(d) {
             return y(d.yhat);
         });*/
-    
-    console.log(d3.extent(d, function(d) {
-        return d['Ownership'];
-    }))
+
     ugx.domain([0, d3.max(d, function(d) {
         return d['Ownership'];
     }) +5.3]);
-    console.log(d3.extent(d, function(d) {
-        return d['Death rate'];
-    }))
+ 
     ugy.domain([0, d3.max(d, function(d) {
         return d['Death rate'];
     }) + 5.41]);
@@ -167,7 +159,6 @@ d3.csv('data/ownershipdeathrate.csv', function(d) {
         })
         .on("mouseover", function(d) {
      
-            console.log(d.State);
             ugtip.html(d.State)
              .style("left", (d3.event.pageX) + "px")    
                    .style("top", (d3.event.pageY - 28) + "px");
