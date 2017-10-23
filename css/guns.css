@@ -96,7 +96,8 @@ p {
 }
 
  :root {
-      --accent-color: #E8336D;
+      --accent-color: #383838;
+
     }
 path.line {
     fill: none;
