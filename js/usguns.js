@@ -176,6 +176,7 @@ d3.csv('data/ownershipdeathrate.csv', function(d) {
         .datum(d)
         .attr("class", "bestfit")
         .attr("d", ugline)
+        .attr("opacity", 0.5)
         .attr("stroke", "black")
 
     function findyhat(d) {

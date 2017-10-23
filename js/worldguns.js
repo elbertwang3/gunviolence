@@ -99,7 +99,8 @@ d3.csv('data/gunsdeathrate.csv', function(d) {
         .data(d)
         .enter().append("circle")
         .attr("class", "dot")
-        .attr("r", 3)
+        .attr("r", 5)
+        .attr("opacity", 0.7)
         .attr("cx", function(d) {
             return wgx(d['gunsper100']);
         })
@@ -129,6 +130,7 @@ d3.csv('data/gunsdeathrate.csv', function(d) {
         .datum(d)
         .attr("class", "bestfit")
         .attr("d", wgline)
+        .attr("opacity", 0.5)
         .attr("stroke", "black")
 
         function findyhat(d) {
